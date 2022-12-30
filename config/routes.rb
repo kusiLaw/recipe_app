@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :recipes
+  # resources :recipes
  # root 'users#index'
- root 'recipes#index'
- devise_for :users
-  
+ root 'recipes#public_recipes'
+ get  'public_recipes', to: 'recipes#public_recipes'
+ 
+  devise_for :users
+  resources :recipes
+
   resources :users do
    resources :recipes
   end

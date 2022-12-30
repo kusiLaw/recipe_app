@@ -1,39 +1,39 @@
 
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
-  before_action :set_recipe, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[public_recipes]
+  before_action :set_recipe, only: %i[show destroy]
   
-
-  # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
-  end
+      # @recipes = Recipe.includes(:user).where(user_id: params[:user_id]) #working
+      @recipes = Recipe.includes(:user).all
+  end 
 
-
-  # GET /recipes/1 or /recipes/1.json
   def show
   end
 
-  # GET /recipes/new
+  def public_recipes
+     @recipes =  Recipe.where(public: true).order(created_at: :desc)
+  end
+
+
+
   def new
     @recipe = Recipe.new
   end
 
-  # GET /recipes/1/edit
   def edit
+  
   end
 
-  # POST /recipes or /recipes.json
+ 
   def create
     @recipe = Recipe.new(recipe_params)
 
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
-        format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +69,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def recipe_params
-      params.require(:recipe).permit(:name, :preparation_time, :description, :public, :user_id)
+      params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :user_id)
     end
 end

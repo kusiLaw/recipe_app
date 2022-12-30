@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    redirect_to user_recipes_path(set_user)
   end
  
   # GET /users/new

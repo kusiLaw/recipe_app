@@ -64,10 +64,48 @@ nav h1{
  justify-content: flex-end;
  align-items: center;
  gap: 2rem;
-
 }
 
 .container{
  margin: 4rem;
 
+}
+
+.recipes-show{
+  margin: 2rem;
+}
+
+.recipes-show h2{
+  margin-bottom: 2rem;
+}
+
+.add-recipes{
+ align-self: flex-end;
+}
+
+.recipes-list{
+ border: 1px solid black;
+ padding: 1.5rem;
+ margin: 1rem 0rem
+}
+
+.recipe-title{
+ width: 30%;
+ margin-right: 10%;
+ gap: 2rem;
+ padding-left: 2rem;
+}
+
+.recipe-title a{
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.recipe-title a:last-child{
+ margin-left: 1rem;
+}
+
+p strong{
+ text-transform: capitalize;
+ font-size: 2rem;
 }

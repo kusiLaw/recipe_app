@@ -1,20 +1,30 @@
 <p style="color: green"><%= notice %></p>
+<%# <%if @recipes && @recipes.length > 0%> 
+<%if current_user %>
+  <div class="recipes-show c-flex">
+     <h2>Recipes</h2>
+     <%#= link_to "Add Recipes",  new_user_recipe_path(current_user) %>
+     <%= link_to "ADD RECIPE", new_recipe_path , class: 'add-recipes'%>
 
-<%if @recipes.length > 0%>
-
-   <h2>Recipes</h2>
-
-   <div id="recipes">
      <% @recipes.each do |recipe| %>
-       <%= render recipe %>
-       <p>
-         <%= link_to "Show this recipe", recipe %>
-       </p>
+        <div id="<%= dom_id recipe %>" class="recipes-list flex">
+          <div class="recipe-title c-flex">
+             <p><strong><%= recipe.name %></strong></p>
+             <div class="flex">
+               <%if current_user == recipe.user%>  <%# used cancan%>
+                  <%= link_to "REMOVE", recipe , data: {turbo_method: :delete, 
+                  turbo_confirm: "Are you sure you want to delete?"}%>  |  
+               <%end%> 
+               <p> <%= link_to "DETAILS", recipe %></p>
+             </div>
+          </div>
+
+
+          <p><%= recipe.description %></p>
+          <%#= render recipe %>
+          
+        </div>
      <% end %>
    </div>
-<%else%>
-   <h2>Public Recipes</h2>
-   <p>There is no public recipes yet</p>
- 
 <%end%>
 

@@ -1,4 +1,5 @@
-<%= form_with(model: recipe) do |form| %>
+ <%#= form_with(model: recipe) do |form| %> 
+<%= form_with model: [ current_user, current_user.recipes.build ] do |form| %>
   <% if recipe.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
@@ -18,9 +19,13 @@
 
   <div>
     <%= form.label :preparation_time, style: "display: block" %>
-    <%= form.time_field :preparation_time %>
+    <%= form.text_field :preparation_time %>
   </div>
 
+  <div>
+    <%= form.label :cooking_time, style: "display: block" %>
+    <%= form.text_field :cooking_time %>
+  </div>
   <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
