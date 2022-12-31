@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   # resources :recipes
  # root 'users#index'
  root 'recipes#public_recipes'
@@ -6,9 +7,10 @@ Rails.application.routes.draw do
  
   devise_for :users
   resources :recipes
-
+  resources :foods
   resources :users do
-   resources :recipes
+    resources :recipes
+   resources :foods
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

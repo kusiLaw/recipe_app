@@ -71,11 +71,13 @@ nav h1{
 
 }
 
-.recipes-show{
+.recipes-show,
+.foods-show {
   margin: 2rem;
 }
 
-.recipes-show h2{
+.recipes-show h2,
+.foods-show h2 {
   margin-bottom: 2rem;
 }
 
@@ -108,4 +110,27 @@ nav h1{
 p strong{
  text-transform: capitalize;
  font-size: 2rem;
+}
+
+
+.food_table {
+ border-collapse: collapse;
+ width: 100%;
+}
+
+.food_table td, #customers th {
+ border: 1px solid #ddd;
+ padding: 8px;
+}
+
+.food_table tr:nth-child(even){background-color: #f2f2f2;}
+
+.food_table tr:hover {background-color: #ddd;}
+
+.food_table th {
+ padding-top: 12px;
+ padding-bottom: 12px;
+ text-align: left;
+ background-color: #04AA6D;
+ color: white;
 }
