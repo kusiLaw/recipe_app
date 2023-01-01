@@ -6,9 +6,11 @@ class RecipesController < ApplicationController
   def index
       # @recipes = Recipe.includes(:user).where(user_id: params[:user_id]) #working
       @recipes = Recipe.includes(:user).all
+   
   end 
 
   def show
+   @foods = Food.includes(:user).all
   end
 
   def public_recipes

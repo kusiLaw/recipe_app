@@ -7,24 +7,24 @@
      <%= link_to "ADD RECIPE", new_recipe_path , class: 'add-recipes'%>
 
      <% @recipes.each do |recipe| %>
-        <div id="<%= dom_id recipe %>" class="recipes-list flex">
-          <div class="recipe-title c-flex">
-             <p><strong><%= recipe.name %></strong></p>
-             <div class="flex">
-               <%if current_user == recipe.user%>  <%# used cancan%>
-                  <%= link_to "REMOVE", recipe , data: {turbo_method: :delete, 
-                  turbo_confirm: "Are you sure you want to delete?"}%>  |  
-               <%end%> 
-               <p> <%= link_to "DETAILS", recipe %></p>
-             </div>
-          </div>
-
-
-          <p><%= recipe.description %></p>
-          <%#= render recipe %>
-          
-        </div>
+       
+         <div id="<%= dom_id recipe %>" class="recipes-list flex">
+        
+           <div class="recipe-title c-flex">
+              <a href="<%=recipe_path(recipe)%>">
+                 <p><strong><%= recipe.name %></strong></p>
+              </a>
+              <div class="flex">
+                <%if current_user == recipe.user%>  <%# used cancan%>
+                   <%= link_to "REMOVE", recipe , data: {turbo_method: :delete, 
+                   turbo_confirm: "Are you sure you want to delete?"} %>    
+                <%end%> 
+              </div>
+           </div>
+           <p><%= recipe.description %></p>
+         </div>
+       
      <% end %>
-   </div>
+  </div>
 <%end%>
 
