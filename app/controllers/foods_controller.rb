@@ -10,6 +10,11 @@ class FoodsController < ApplicationController
     @food = Food.new
   end
 
+  def shopping_list
+   @foods = Food.all
+   @sum = sumtotal(@foods)
+   @qty = quantity_total(@foods)
+  end
 
   def edit
   end
@@ -62,4 +67,19 @@ class FoodsController < ApplicationController
     def food_params
       params.require(:food).permit(:name, :measurement_unit, :price, :quantity, :user_id)
     end
+
+    def sumtotal(obj)
+       sum = 0
+       obj.each do |val|
+         sum += val.price
+       end
+       sum
+    end
+    def quantity_total(obj)
+      sum = 0
+      obj.each do |val|
+        sum += val.quantity.to_i
+      end
+      sum
+   end
 end

@@ -1,7 +1,7 @@
 
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[public_recipes]
-  before_action :set_recipe, only: %i[show destroy]
+  before_action :set_recipe, only: %i[edit show destroy]
   
   def index
       # @recipes = Recipe.includes(:user).where(user_id: params[:user_id]) #working
@@ -10,21 +10,22 @@ class RecipesController < ApplicationController
   end 
 
   def show
-   @foods = Food.includes(:user).all
+   # @recipe
+   @recipe_foods = @recipe.recipe_foods.includes(:food)
+   # p @recipe_foods.food_id
+ 
   end
 
   def public_recipes
      @recipes =  Recipe.where(public: true).order(created_at: :desc)
   end
 
-
-
   def new
     @recipe = Recipe.new
   end
 
   def edit
-  
+ 
   end
 
  
@@ -55,12 +56,12 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
-    @recipe.destroy
+    # @recipe.destroy
 
-    respond_to do |format|
-      format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

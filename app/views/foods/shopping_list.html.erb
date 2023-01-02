@@ -1,0 +1,23 @@
+<h2>Shopping List<h2>
+<p>Amount of food items to buy:<%= @sum %></p>
+<p>Amount of food items to buy:<%= @qty %></p>
+ <table class='food_table'>
+    <tr>
+       <th>Food</th>
+       <th>Quantity</th>
+       <th>Unit Price</th>
+
+    </tr>
+
+    <% @foods.each do |food| %>
+       <%if current_user == food.user%>
+        <tr>
+              <td> <%= food.name %> </td>
+              <td> <%= food.quantity %>   <%= food.measurement_unit  %></td>
+              <td> $ <%= food.price * food.quantity.to_i %> </td>  
+         </tr>
+
+       <%end%>
+    <% end %>
+
+</table>
